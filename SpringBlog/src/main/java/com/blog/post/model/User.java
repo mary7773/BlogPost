@@ -9,8 +9,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Size;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -23,11 +25,16 @@ public class User implements UserDetails {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 	@Column (unique=true)
+	@Size(min=4, max=20)
+	@NotEmpty
     private String username;
 	@Column (unique=true)
+	@NotEmpty
 	private String email;
 	@Column (nullable=false)
 	@JsonIgnore
+	@Size(min=6, max=20)
+	@NotEmpty
 	private String password;
 	@Column
 	@JsonIgnore

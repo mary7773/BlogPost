@@ -12,8 +12,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Type;
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 public class Post {
@@ -23,10 +25,13 @@ public class Post {
 	private Long id;
 	
 	@Column
+	@NotEmpty
 	private String title;
 	
 	@Column
 	@Type(type="text")
+	@NotEmpty
+	@Size(min= 20)
 	private String text;
 	
 	@Column
